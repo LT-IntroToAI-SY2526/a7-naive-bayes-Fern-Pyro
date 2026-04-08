@@ -31,7 +31,7 @@ class BayesClassifier:
 
         # check if both cached classifiers exist within the current directory
         if os.path.isfile(self.pos_filename) and os.path.isfile(self.neg_filename):
-            print("Data files found - loading to use cached values...")
+            print("Data files found - loading to use cached values...") #loading the dictionaries and saving them to pos & neg
             self.pos_freqs = self.load_dict(self.pos_filename)
             self.neg_freqs = self.load_dict(self.neg_filename)
         else:
@@ -48,10 +48,13 @@ class BayesClassifier:
         # os.walk returns a generator (feel free to Google "python generators" if you're
         # curious to learn more, next gets the first value from this generator or the
         # provided default `(None, None, [])` if the generator has no values)
-        _, __, files = next(os.walk(self.training_data_directory), (None, None, []))
+        _, __, files = next(os.walk(self.training_data_directory), (None, None, [])) #None, None, [] - the data types it's returning ( _, __, files) --> _, ___ is a pretty standard notation; we use these underscores b/c we don't rlly care what these first two items are 
         if not files:
             raise RuntimeError(f"Couldn't find path {self.training_data_directory}")
-
+        # print(_)
+        # print(__)
+        # print(files)
+        # 
         # files now holds a list of the filenames
         # self.training_data_directory holds the folder name where these files are
         
@@ -59,21 +62,24 @@ class BayesClassifier:
         # stored below is how you would load a file with filename given by `fName`
         # `text` here will be the literal text of the file (i.e. what you would see
         # if you opened the file in a text editor
-        # text = self.load_file(os.path.join(self.training_data_directory, fName))
-
+        text = self.load_file(os.path.join(self.training_data_directory, files[0]))
+        print(text)
 
         # *Tip:* training can take a while, to make it more transparent, we can use the
         # enumerate function, which loops over something and has an automatic counter.
         # write something like this to track progress (note the `# type: ignore` comment
         # which tells mypy we know better and it shouldn't complain at us on this line):
-        # for index, filename in enumerate(files, 1): # type: ignore
-        #     print(f"Training on file {index} of {len(files)}")
+        for index, filename in enumerate(files, 1): # type: ignore
+            print(f"Training on file {index} of {len(files)}")
         #     <the rest of your code for updating frequencies here>
-
-
+            print(f"{index}: {filename}")
+            text = self.load_file(os.path.join(self.training_data_directory, filename)) #we've now extracted the text
+            print(text)
+            tokens = self.tokenize(text) #takes the individual words and puts them in a list (all lowercase)
+            print(tokens)
         # we want to fill pos_freqs and neg_freqs with the correct counts of words from
         # their respective reviews
-        
+
         # for each file, if it is a negative file, update (see the Updating frequencies
         # set of comments for what we mean by update) the frequencies in the negative
         # frequency dictionary. If it is a positive file, update (again see the Updating
@@ -227,7 +233,7 @@ class BayesClassifier:
 
 if __name__ == "__main__":
     # uncomment the below lines once you've implemented `train` & `classify`
-    # b = BayesClassifier()
+     b = BayesClassifier()
     # a_list_of_words = ["I", "really", "like", "this", "movie", ".", "I", "hope", \
     #                    "you", "like", "it", "too"]
     # a_dictionary = {}
@@ -274,4 +280,4 @@ if __name__ == "__main__":
     # print("\nThe following should all be negative.")
     # print(b.classify('rainy days are the worst'))
     # print(b.classify('computer science is terrible'))
-    pass
+    #pass
