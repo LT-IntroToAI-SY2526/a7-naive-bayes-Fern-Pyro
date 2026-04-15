@@ -301,11 +301,11 @@ if __name__ == "__main__":
      print(f"P('terrible'| pos) {(b.pos_freqs['terrible']+1)/pos_denominator}")
      print(f"P('terrible'| neg) {(b.neg_freqs['terrible']+1)/neg_denominator}")
 
-    # # uncomment the below lines once you've implemented `classify`
-    # print("\nThe following should all be positive.")
-    # print(b.classify('I love computer science'))
-    # print(b.classify('this movie is fantastic'))
-    # print("\nThe following should all be negative.")
-    # print(b.classify('rainy days are the worst'))
-    # print(b.classify('computer science is terrible'))
+    # uncomment the below lines once you've implemented `classify`
+     print("\nThe following should all be positive.")
+     print(b.classify('I love computer science'))
+     print(b.classify('this movie is fantastic'))
+     print("\nThe following should all be negative.")
+     print(b.classify('rainy days are the worst'))
+     print(b.classify('computer science is terrible'))
     #pass
