@@ -43,10 +43,6 @@ with open("sorted_stoplist.txt", "r", encoding="utf8") as f:
      stoplist = f.read()
 tokenized_stoplist = tokenize(stoplist)
 
-
-# with open("sorted_stoplist.txt", "r", encoding='utf8') as f:
-#      stoplist = f.read()
-
 freqs = {}
 
 for word in words:
@@ -56,7 +52,7 @@ for word in words:
         else:
             freqs[word] = 1
 
-#print(freqs)
+# print(freqs)
 
 #Print total unique words and total number of words
 unique_words = len(freqs)
@@ -66,7 +62,7 @@ total_num_words = sum(freqs.values())
 print(f"Total words: {total_num_words}")
 
 #Print top 20 words
-# top_words = sorted(freqs.items(), key=lambda x: x[1], reverse = True)
-# print("Top 20 words: ")
-# for word, count in top_words[:20]:
-#     print(f"{word} {count}")
+top_words = sorted(freqs.items(), key=lambda x: x[1], reverse = True)
+print("Top 20 words: ")
+for word, count in top_words[:20]:
+    print(f"{word} {count}")
