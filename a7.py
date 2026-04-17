@@ -144,9 +144,9 @@ class BayesClassifier:
         # will be used in calculating the probability of each document class given each
         # individual feature
         pos_total = sum(self.pos_freqs.values())
-        print(f"word: {token}, pos_score running total: {pos_total}")
+        # print(f"word: {tokens}, pos_score running total: {pos_total}")
         neg_total = sum(self.neg_freqs.values())
-        print(f"word: {token}, neg_score running total: {neg_total}")
+        # print(f"word: {tokens}, neg_score running total: {neg_total}")
 
         # for each token in the text, calculate the probability of it occurring in a
         # postive document and in a negative document and add the logs of those to the
@@ -155,11 +155,14 @@ class BayesClassifier:
         # of 0)
 
         for token in tokens:
-            pos_token_freq = self.pos_freqs.get(tokens, 0) + 1
-            neg_token_freq = self.neg_freqs.get(tokens, 0) + 1
-
-            pos_score = math.log[pos_token_freq / pos_total]
-            neg_score = math.log[neg_token_freq / neg_total]
+            pos_token_freq = self.pos_freqs.get(token, 0) + 1
+            # print(f"{token} has a positive freq of {pos_token_freq}")
+            neg_token_freq = self.neg_freqs.get(token, 0) + 1
+            # print(f"{neg_token_freq}")
+            pos_score = math.log(pos_token_freq / pos_total)
+            # print(f"{token} has a positive score of {pos_score}")
+            neg_score = math.log(neg_token_freq / neg_total)
+            # print(f"{token} has a negative score of {neg_score}")
 
         # for debugging purposes, it may help to print the overall positive and negative
         # probabilities
@@ -169,7 +172,7 @@ class BayesClassifier:
         # larger)
         if pos_score > neg_score:
             return "positive"
-        elif neg_score  > pos_score:
+        elif neg_score > pos_score:
             return "negative"
         # return a string of "positive" or "negative"
 
