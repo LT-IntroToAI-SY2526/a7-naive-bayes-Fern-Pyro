@@ -159,11 +159,13 @@ class BayesClassifier:
             # print(f"{token} has a positive freq of {pos_token_freq}")
             neg_token_freq = self.neg_freqs.get(token, 0) + 1
             # print(f"{neg_token_freq}")
-            pos_score = math.log(pos_token_freq / pos_total)
+            pos_score += math.log(pos_token_freq / pos_total)
             # print(f"{token} has a positive score of {pos_score}")
-            neg_score = math.log(neg_token_freq / neg_total)
+            neg_score += math.log(neg_token_freq / neg_total)
             # print(f"{token} has a negative score of {neg_score}")
 
+        print(f"Overall positive score: {pos_score}")
+        print(f"Overall negative score: {neg_score}")
         # for debugging purposes, it may help to print the overall positive and negative
         # probabilities
         
