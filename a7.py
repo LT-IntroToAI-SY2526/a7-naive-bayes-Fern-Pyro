@@ -167,10 +167,10 @@ class BayesClassifier:
             neg_score += math.log(neg_token_freq / neg_total)
             token_neg_score = math.log(neg_token_freq / neg_total)
             # print(f"{token} has a negative score of {token_neg_score}")
-            if token_pos_score > token_neg_score:
-                print(f" '{token}' is positive")
-            elif token_neg_score > token_pos_score:
-                print(f" '{token}' is negative")
+            # if token_pos_score > token_neg_score:
+            #     print(f" '{token}' is positive")
+            # elif token_neg_score > token_pos_score:
+            #     print(f" '{token}' is negative")
 
         print(f"Overall positive score: {pos_score}")
         print(f"Overall negative score: {neg_score}")
@@ -277,10 +277,14 @@ if __name__ == "__main__":
     # uncomment the below lines once you've implemented `train` & `classify`
      b = BayesClassifier()
      print("\nThe following should all be positive.")
-     print(b.classify("Summer break is almost here. I am super excited and I know that it's going to be the best"))
+     print(b.classify("My favorite slime that I own! This slime feels AMAZING. And it SOUNDS amazing too. And the smell is so nice and comforting. I love deer so maybe I'm biased but this is my favorite slime that I own. The little deer charm it comes with is so cute, too."))
+     print(b.classify("Most Ardently is the newest release in the classic remixed series and the one that I was most excited for because it's a Pride and Prejudice retelling. It follows a similar narrative as the original text but focuses on a trans main character by the name of Oliver. What Worked: SO MUCH! I'm a huge fan of Pride and Prejudice and I haven't found a retelling yet that captures the essence of the original text while also having some feeling of originality. I appreciated that Novoa was able to capture the original personalities of each of the characters while addressing social issues that were relevant to Oliver as a character. I was worried that Oliver wouldn't receive the same support that Elizabeth experiences with her father and sister, but it's no different for him. Publishing has an issue with pushing narratives that focus heavily on struggle and trauma, but Novoa created the perfect balance of addressing the transphobia and homophobia while giving Oliver a strong support system. I also appreciated the historical aspects that were woven into the text. While Novoa does take some liberties with the text, we cannot deny that there was a queer community that existed during this time. Reading the authors note at the end will provide better context. The writing was beautiful, and the pacing was superb creating such a cute and endearing romance between Oliver and Darcy. I just wanted a little bit more of their relationship. Overall, a great read and I'm definitely looking forward to checking out more by Novoa."))
+    #  print(b.classify("Summer break is almost here. I am super excited and I know that it's going to be the best"))
     #  print(b.classify("Aquaponics is my favorite class. I look forward to going everyday"))
     #  print(b.classify("I enjoy working at the Art Institute of Chicago. It can be stressful, but the work is rewarding"))
-    #  print(f"\nThe following should all be negative")
+     print(f"\nThe following should all be negative")
+     print(b.classify("Overall, if you couldn't tell, I did not like this book. Luckily, it only took me 3 days or so to read so I just powered through so my hating could be accurate. There's a complete lack of care or respect for the original book, and I'm honestly not convinced that Novoa even likes the original, or for that matter has even read it. There's massive missed opportunities for meaningful exploration of what it would be like to be trans in the Regency era because of how 2020s-coded it is, and it makes the plot fall completely flat. Plus, I've not even mentioned the lack of development for ANY character that isn't Oliver or Darcy, the weird sexism suffused through the book, or the fact that Charlotte Lucas is gay for reasons that only impact Oliver by her being supportive but give her no additional character traits. Large sections of the plot are lopped off, and the sections that stayed in there felt like Novoa was slogging through it. Honestly, it would take me too long to fully list everything I didn't like. Would not recommend."))
+     print(b.classify("The texture of this slime is amazing but the fragrance is beyond too strong. I can’t even open the container without feeling sick. If you any type of scent aversion this one is probably not for you."))
     #  print(b.classify("I am nervous that I won't do well on the AP tests.  I have studied, but I don't think I'll do that well"))
     #  print(b.classify("Rasins are the worst. I really like eating grapes, but I can’t stand finding raisins in my food"))
     #  print(b.classify("Overall I wouldn’t recommend taking this class. You can tell how passionate the professor is and lectures are never boring; however, the organization of this class could not be worse"))
